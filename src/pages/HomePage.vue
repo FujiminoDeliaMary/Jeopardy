@@ -5,7 +5,7 @@
 <template>
     <div class="home">
 
-        <RouterLink to="/categories"><p class="start">Start</p></RouterLink>
+        <RouterLink to="/rules"><p class="start">Start</p></RouterLink>
     </div>
  
 </template>

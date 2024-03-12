@@ -1,0 +1,60 @@
+.rules{
+    background-color: $rosy-brown;
+    display: flex;
+    padding:4vh 0 0 2rem;;
+    flex-direction: column;
+    position: absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    &__title{
+        font-family: $font-family-integral;
+        font-size: $font-size-title;
+        letter-spacing: 5px;
+        margin-bottom:3.5vh;
+    }
+
+    &__libelle{
+        font-family: $font-family-palo;
+        font-size: $font-size-medium;
+        margin-bottom:2vh;
+    }
+
+    &__list{
+        display: flex;
+        flex-direction: column;
+        gap:2rem;
+        max-width:80%;
+        margin-left:2rem;
+
+    }
+
+    &__item{
+        font-family: $font-family-palo;
+        font-size: $font-size-paragraph;
+        line-height:1.2;
+
+        span{
+          
+            img{
+                width:12px
+            }
+        }
+    }
+
+    &__start{
+        margin-top:4rem;
+        font-size: $font-size-medium;
+        color:$alice-taupe;
+        font-family: $font-family-tommy;
+        background-color: $rich-black;
+        width: fit-content;
+        padding: 1rem 3rem;
+
+        // &:hover{
+        //     scale: 1.2;
+        //     transition: .2s scale ease-in-out;
+        // }
+    }
+}

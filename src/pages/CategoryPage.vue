@@ -1,9 +1,14 @@
 <script setup>
-    import { router } from '@/router';
+    import TheModal from '@/components/TheModal.vue';
+import { router } from '@/router';
     import { useJeopardyStore } from '@/stores/jeopardy';
+    import { ref } from 'vue';
+    import CountUp from 'vue-countup-v3'
     
         const jeopardyStore = useJeopardyStore();
-        const levels = [1, 2, 3, 4, 5];
+        const showModal = ref(false);
+        const currentQuestion = ref();
+        const points = ref();
 
         const getQuestionByLevel = (category, level) => {
         return category.questions.find(question => question.level === level);
@@ -27,68 +32,50 @@
         const question = getQuestionByLevel(category, level);
         return question ? question.isdone : false;
     }
+
+    function handleClick(question){
+        currentQuestion.value=question;
+        showModal.value=true;
+        points.value = question.points;
+    }
+
+    const score = ref(0);
 </script>
 
 <template>
-    <div class="categories">
-        <h2>Categories</h2>
+    <main class="categories">
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th v-for="category in jeopardyStore.categories" :key="category.name">{{ category.name }}</th>
-                </tr>
-            </thead>
-            <tbody class="body">
-                <tr v-for="level in levels" :key="level">
-                    <td v-for="category in jeopardyStore.categories" :key="category.name + level" @click="goToDetails(category.name, level)" :class="{ 'done': isQuestionDone(category.name, level) }" @click.prevent="markQuestionAsDone(category.name, level)">
-                        <div v-if="getQuestionByLevel(category, level)">
-                            {{ getQuestionByLevel(category, level).level }}
-                        </div>
-                        <div v-else>-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <h2 class="categories__title">Categories</h2>
+
+        <div class="questions">
+            <div v-for="category in jeopardyStore.categories" :key="category.name" class="questions__categorie">
+                {{ category.name }}
+            </div>
+            <ul v-for="category in jeopardyStore.categories" :key="category.name + Date.now()"  class="questions__list">
+                <li v-for="question in category.questions" :key="question.level" @click="handleClick(question); markQuestionAsDone(category.name, question.level)" class="questions__item">
+                    {{ question.points }} <img src="../assets/icons/dollar.svg" alt="">
+                </li>
+            </ul>
+        </div>
+
+        <div class="categories__score">
+            <p>Score:</p> 
+            <div>
+               <count-up :end-val=score></count-up> 
+            </div>
+        </div>
+    </main>
+
+    <TheModal :showModal="showModal" @close="showModalDocument = false">
+        <template #body>
+            <p>{{ currentQuestion?.question }}</p>
+        </template>
+    </TheModal>
 
 </template>
 
 <style>
 
-h2{
-    margin: 1rem 0;
-}
-    .categories{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
-        .table{
-        width: 70%;
-        border:  2px solid #000;
-        border-collapse: collapse;
-    }
-    }
-
-   td{
-        border: 2px solid #000;
-        cursor: pointer;
-    }
-    th{
-        background-color: #FF9999;
-        padding: 0.5rem 0;
-        font-size: larger;
-    }
-    
-    a, a:visited{
-        text-decoration: none;
-        color: #000
-    }
-
-    .done{
-        background-color: blanchedalmond;
-    }
 
 </style>
