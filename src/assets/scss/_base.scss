@@ -19,6 +19,7 @@ html {
 
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #D19F97;
     font-size: 1.3rem;
 }
 
@@ -31,4 +32,8 @@ a:visited {
 
 .active {
     color: black;
+}
+
+.start{
+    padding: 1rem 2.3rem;
 }

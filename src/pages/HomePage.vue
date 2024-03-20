@@ -32,9 +32,10 @@
 
     .start{
         background-color: #ccd6f5;
-        padding: 0.5rem 1.7rem;
-        font-size: 2rem;
+        padding: 1.3rem 2rem;
+        font-size:  3rem;
         font-family: 'General Sans', sans-serif;
+        font-weight: 500;
         text-transform: uppercase;
         margin-top:82vh;
     }

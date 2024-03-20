@@ -29,6 +29,6 @@
             </li>
         </ul>
 
-        <RouterLink to="categories"><p class="rules__start">Jouer</p></RouterLink>
+        <RouterLink to="choices"><p class="rules__start">Jouer</p></RouterLink>
     </div>
 </template>

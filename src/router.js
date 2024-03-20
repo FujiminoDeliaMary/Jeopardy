@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage.vue";
 import CategoryPage from "./pages/CategoryPage.vue";
 import QuestionPage from "./pages/QuestionPage.vue";
 import RulesPage from "./pages/RulesPage.vue";
+import ChoicePage from './pages/ChoicePage.vue'
 
 export const router = createRouter({
 	history: createWebHashHistory(),
@@ -26,6 +27,11 @@ export const router = createRouter({
       path:'/rules',
       name : 'rules',
       component: RulesPage
-  }
+    },
+    {
+        path:'/choices',
+        name : 'choices',
+        component: ChoicePage
+    }
   ]
 })

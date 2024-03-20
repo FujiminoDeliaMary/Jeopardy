@@ -25,7 +25,7 @@ import { router } from '@/router';
             if (question) {
                 question.isdone = true;
             }
-        }
+    }
 
     function isQuestionDone(categoryName, level) {
         const category = jeopardyStore.categories.find(cat => cat.name === categoryName);
@@ -47,11 +47,12 @@ import { router } from '@/router';
 
         <h2 class="categories__title">Categories</h2>
 
+       
         <div class="questions">
-            <div v-for="category in jeopardyStore.categories" :key="category.name" class="questions__categorie">
+            <div v-for="category in jeopardyStore.selectedCategories" :key="category.name" class="questions__categorie">
                 {{ category.name }}
             </div>
-            <ul v-for="category in jeopardyStore.categories" :key="category.name + Date.now()"  class="questions__list">
+            <ul v-for="category in jeopardyStore.selectedCategories" :key="category.name + Date.now()"  class="questions__list">
                 <li v-for="question in category.questions" :key="question.level" @click="handleClick(question); markQuestionAsDone(category.name, question.level)" class="questions__item">
                     {{ question.points }} <img src="../assets/icons/dollar.svg" alt="">
                 </li>
